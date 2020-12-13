@@ -9,9 +9,16 @@ class Scoreboard(Turtle):
         super().__init__()
         self.hideturtle()
         self.penup()
-        self.score = 0
+        self.goto(-270, 230)
+        self.level = 0
+        self.refresh()
 
-    def refresh(self, score=0):
+    def refresh(self, level=0):
         self.clear()
-        self.score = score
-        self.write(f"Level: {score}", move=False, align="center", font=FONT)
+        self.level = level
+        self.write(f"Level: {level}", move=False, align="left", font=FONT)
+
+    def game_over(self, level):
+        """Game over on screen"""
+        self.clear()
+        self.write(f"GAME OVER! Level: {level}", align="left", font=FONT)  # Write 'Game Over' message

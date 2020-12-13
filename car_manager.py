@@ -1,22 +1,22 @@
 from car import Car
 from random import choice, randint
-import gc
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
 MAX_CARS = 20
 
+
 class CarManager:
 
     def __init__(self):
         super().__init__()
         self.level = 0
-        self.optimus_prime = set()
+        self.cars_on_road = set()
 
-    def move(self, level=1):
+    def move(self, level=0):
         to_remove = set()
-        for car in self.optimus_prime:
+        for car in self.cars_on_road:
             car.forward(STARTING_MOVE_DISTANCE + MOVE_INCREMENT * level)
             if car.xcor() < -280:
                 car.setx(300)
@@ -24,6 +24,6 @@ class CarManager:
                 car.color(choice(COLORS))
 
     def add_car(self):
-        if len(self.optimus_prime) < MAX_CARS:
+        if len(self.cars_on_road) < MAX_CARS:
             car = Car(choice(COLORS), randint(30, 200)*choice([-1, 1]))
-            self.optimus_prime.add(car)
+            self.cars_on_road.add(car)

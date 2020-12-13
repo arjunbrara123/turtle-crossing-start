@@ -20,6 +20,9 @@ class Player(Turtle):
         else:
             return False
 
+    def next_level(self):
+        self.goto(STARTING_POSITION)
+
     def move_up(self):
         self.forward(MOVE_DISTANCE)
 
