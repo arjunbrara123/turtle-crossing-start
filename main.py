@@ -17,6 +17,7 @@ def debug_mode():
 screen = Screen()                       # Initialise turtle screen object
 screen.tracer(0)                        # Turn off automatic screen updating and set to manual only
 screen.setup(width=600, height=600)     # Initialise GUI screen
+screen.colormode(255)
 screen.title("Turtle Crossing")
 scoreboard = Scoreboard()               # Initialise scoreboard object
 car_manager = CarManager()              # Initialise Car Manager object
@@ -33,7 +34,36 @@ for y in [-210, -20, 20, 210]:
         liner.penup()  # Lift pen off screen
         liner.forward(10)  # Move forward without drawing line
         liner.pendown()  # Put pen back on screen to start drawing again
-        liner.forward(10)  # Draw white line
+        liner.forward(10)  # Draw black line
+
+# Road fill color
+road1 = Turtle()
+road1.shape("square")
+road1.penup()
+road1.shapesize(stretch_wid=8.5, stretch_len=30)
+road1.color((200, 200, 200))
+road1.sety(116)
+road1.stamp()
+road1.sety(-116)
+road1.color((220, 220, 220))
+road1.stamp()
+road1.sety(-370)
+road1.color("gold")
+#road1.clear()
+
+# Road lane markers
+for y in [-116, 88, 144]:
+    liner = Turtle()
+    liner.penup()
+    liner.setposition(-300, y)
+    liner.color("white")
+    liner.pensize(7)
+    for i in range(60):  # Set number of dashes to loop though
+        liner.penup()  # Lift pen off screen
+        liner.forward(20)  # Move forward without drawing line
+        liner.pendown()  # Put pen back on screen to start drawing again
+        liner.forward(15)  # Draw blank line
+    liner.stamp()
 
 # Set up player controls
 screen.listen()
